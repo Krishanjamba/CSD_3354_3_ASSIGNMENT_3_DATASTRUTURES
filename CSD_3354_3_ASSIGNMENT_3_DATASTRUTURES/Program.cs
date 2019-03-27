@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace CSD_3354_3_ASSIGNMENT_3_DATASTRUTURES
 {
@@ -22,26 +24,52 @@ namespace CSD_3354_3_ASSIGNMENT_3_DATASTRUTURES
     class Student
     {
         String Student_name;
-        String StudentID;
-        double StudentGPA;
+        double[] StudentID;
+        double[] StudentGPA;
 
         // TODO: change this implementation so that the program pulls names from a Text File:
         // to do this, you must change the container for Student Names from Array to List
-        String[] names = new String[5] { "Bill", "Mary", "Laura", "Sam", "Steve" };
+
+        List<string> names = File.ReadAllLines(@"C:\names\Names.txt").ToList();
         Random r1;
 
         public Student()
         {
             r1 = new Random();
             Student_name = names[r1.Next(0, 4)];
-            StudentID = Convert.ToString(r1.Next(1000, 9999));
-            StudentGPA = Convert.ToDouble(r1.Next(1, 99));
+
+            StudentID = new double[names.Count];
+            for (int i = 0; i < names.Count; i++)
+            {
+                StudentID[i] = r1.Next(1000, 9999); ;
+            }
+            StudentGPA = new double[names.Count];
+            for (int i = 0; i < names.Count; i++)
+            {
+                StudentGPA[i] = r1.Next(1, 99); ;
+            }
+        }
+        public void Display()
+        {
+            foreach (string i in names)
+            {
+            }
         }
 
-        public double AverageStudentGPA()
+        public void AverageStudentGPA()
         {
             // TO DO: implement the algorithm to calculate the Students' average GPA
-            return 0;
+            double average = 0;
+            double num = 0;
+            Console.WriteLine("Student GPA - ");
+            for (int i = 0; i < names.Count; i++)
+            {
+                Console.Write(StudentGPA[i] + " ");
+                num += StudentGPA[i];
+                average = num / names.Count;
+            }
+            Console.WriteLine(" ");
+            Console.WriteLine("The overall average of Student GPA is " + average);
         }
     }
 
@@ -62,11 +90,22 @@ namespace CSD_3354_3_ASSIGNMENT_3_DATASTRUTURES
         public void Sorter()
         {
             // TO DO : sort the Queue 
+           /* q1.Enqueue("Java-Sat-AM-A202");
+            q1.Enqueue("C#.Net-MON-PM-A122");
+            q1.Enqueue("MATH-FRI-AM-A506");
+            q1.Enqueue("BIGDATA-THU-AM-B230");
+            q1.Enqueue("Java-WED-PM-A202");
+            q1.Enqueue("C#>Net-THU-PM-B125");
+            q1.Enqueue("MATH-TUE-AM-B130");
+            q1.Enqueue("EMERGINGTECGNOLOGY-FRI-PM-B122");
+            q1.Enqueue("MOcrosoftDATASTACK-MON-AM-B122");
+            q1.Enqueue("MATH-MON-PM-A222");
+            */
         }
 
         public void Run()
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i <= 10; i++)
             {
                 q1.Enqueue(new Student());
             }
@@ -78,48 +117,21 @@ namespace CSD_3354_3_ASSIGNMENT_3_DATASTRUTURES
         }
 
     }
-
-    class DataStructureStack : IDataStructure
-    {
-        // the STACK holds the Students
-        public Stack s1 = new Stack();
-
-        Sort_DataStructure Sort1;
-
-        public void Sorter()
-        {
-            // TO DO : sort the Stack
-        }
-
-        public void Run()
-        {
-            for (int i = 0; i < 20; i++)
-            {
-                s1.Push(new Student());
-            }
-
-            Sort1 = new Sort_DataStructure(Sorter);
-        }
-
-        public void Sort() { }
-    }
-
 }
-
 namespace BubbleSort
 {
     class MySort
     {
         static void Main2(string[] args)
+
         {
             int[] arr = { 78, 55, 45, 98, 13 };
             int temp;
-
             for (int j = 0; j <= arr.Length - 2; j++)
             {
-                for (int i = 0; i <= arr.Length - 2; i++)
+                for(int i = 0; i <= arr.Length - 2; i++)
                 {
-                    if (arr[i] > arr[i + 1])
+                    if(arr[i] > arr[i + 1])
                     {
                         temp = arr[i + 1];
                         arr[i + 1] = arr[i];
@@ -128,10 +140,14 @@ namespace BubbleSort
                 }
             }
 
-            Console.WriteLine("Sorted:");
+            Console.WriteLine("sorted: ");
             foreach (int p in arr)
                 Console.Write(p + " ");
             Console.Read();
         }
     }
 }
+
+
+
+   
