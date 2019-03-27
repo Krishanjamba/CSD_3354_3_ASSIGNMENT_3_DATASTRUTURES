@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace CSD_3354_3_ASSIGNMENT_3_DATASTRUTURES
 {
+    // Members of Assignment-3
     // Sawan C0732149
     // Krishan C0732156
     public delegate void Sort_DataStructure();
@@ -27,10 +28,8 @@ namespace CSD_3354_3_ASSIGNMENT_3_DATASTRUTURES
         double[] StudentID;
         double[] StudentGPA;
 
-        // TODO: change this implementation so that the program pulls names from a Text File:
-        // to do this, you must change the container for Student Names from Array to List
-
-        List<string> names = File.ReadAllLines(@"C:\names\Names.txt").ToList();
+        
+        List<string> names = File.ReadAllLines("U:/Users/732156/names.txt").ToList();
         Random r1;
 
         public Student()
@@ -58,7 +57,7 @@ namespace CSD_3354_3_ASSIGNMENT_3_DATASTRUTURES
 
         public void AverageStudentGPA()
         {
-            // TO DO: implement the algorithm to calculate the Students' average GPA
+           
             double average = 0;
             double num = 0;
             Console.WriteLine("Student GPA - ");
@@ -80,8 +79,7 @@ namespace CSD_3354_3_ASSIGNMENT_3_DATASTRUTURES
 
     class DataStructureQueue : IDataStructure
     {
-        // the QUEUE holds the classes (that is classroom of students!)
-        // TO DO: insert the contents of the Data File: Classroom Data Set 
+        
 
         public Queue q1 = new Queue();
 
